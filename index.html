@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey, I'm Kang Kang</title>
+<meta name="description" content="Francis (Kang Kang) Tan: SUSS final-year, Muay Thai fighter, certified yapper, future sales hotshot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sun:#FFD23F; --pink:#FF3B6B; --pink-dark:#E02A57; --teal:#3BCEAC;
+    --sky:#7FD3FF; --ink:#1A1A1A; --paper:#FFFFFF; --cream:#FFF6D6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Nunito',system-ui,sans-serif;background:var(--sun);color:var(--ink);line-height:1.6;overflow-x:hidden}
+  h1,h2,h3,.btn,.tag{font-family:'Fredoka',system-ui,sans-serif}
+
+  #emoji-sky{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .floaty{position:absolute;bottom:-60px;font-size:28px;animation:rise linear forwards;user-select:none}
+  @keyframes rise{
+    0%{transform:translateY(0) rotate(0deg);opacity:0}
+    10%{opacity:.9}
+    90%{opacity:.9}
+    100%{transform:translateY(-115vh) rotate(var(--spin));opacity:0}
+  }
+
+  main{position:relative;z-index:1;max-width:1040px;margin:0 auto;padding:0 20px}
+
+  .hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:60px 0 40px}
+  .tag{display:inline-block;background:var(--paper);border:3px solid var(--ink);border-radius:999px;padding:4px 14px;font-size:14px;box-shadow:4px 4px 0 var(--ink);width:max-content;transform:rotate(-2deg);margin-bottom:22px}
+  .hero h1{font-size:clamp(44px,9vw,92px);line-height:1;letter-spacing:-1px}
+  .hero h1 .wave{display:inline-block;animation:wave 2.2s ease-in-out infinite;transform-origin:70% 70%}
+  @keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(16deg)}20%,40%{transform:rotate(-8deg)}}
+  .hero p{font-size:clamp(17px,2.2vw,21px);max-width:620px;margin:22px 0 30px}
+  .hero p b{background:var(--paper);padding:0 6px;border:2px solid var(--ink);border-radius:6px}
+
+  .btns{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-size:18px;text-decoration:none;color:var(--paper);background:var(--pink);border:3px solid var(--ink);border-radius:999px;padding:12px 24px;box-shadow:5px 5px 0 var(--ink);transition:transform .15s,box-shadow .15s,background .15s;cursor:pointer}
+  .btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);background:var(--pink-dark)}
+  .btn:active{transform:translate(3px,3px);box-shadow:2px 2px 0 var(--ink)}
+  .btn.alt{background:var(--paper);color:var(--ink)}
+  .btn.alt:hover{background:var(--cream)}
+
+  .socials{display:flex;gap:12px;margin-top:26px}
+  .socials a{width:48px;height:48px;display:grid;place-items:center;background:var(--paper);border:3px solid var(--ink);border-radius:14px;box-shadow:3px 3px 0 var(--ink);color:var(--ink);transition:transform .15s}
+  .socials a:hover{transform:translateY(-4px) rotate(-6deg)}
+  .socials svg{width:22px;height:22px}
+
+  .section-title{font-size:clamp(32px,5vw,48px);margin:30px 0 8px}
+  .section-sub{font-size:18px;margin-bottom:30px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:26px;padding-bottom:40px}
+  .card{background:var(--paper);border:3px solid var(--ink);border-radius:20px;box-shadow:7px 7px 0 var(--ink);overflow:hidden;transition:transform .2s cubic-bezier(.34,1.56,.64,1),box-shadow .2s;display:flex;flex-direction:column;opacity:0;transform:translateY(40px)}
+  .card.show{opacity:1;transform:translateY(0)}
+  .card.show:hover{transform:translateY(-8px) rotate(-1deg);box-shadow:11px 11px 0 var(--ink)}
+  .card:nth-child(even).show:hover{transform:translateY(-8px) rotate(1deg)}
+  .art{height:170px;display:grid;place-items:center;font-size:78px;border-bottom:3px solid var(--ink);position:relative;overflow:hidden}
+  .art img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .card:hover .art span{animation:boing .5s}
+  @keyframes boing{0%{transform:scale(1)}40%{transform:scale(1.3) rotate(-10deg)}70%{transform:scale(.9) rotate(6deg)}100%{transform:scale(1)}}
+  .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .body h3{font-size:24px}
+  .body ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+  .body li::before{content:"→ ";font-weight:700;color:var(--pink)}
+  .body .more{margin-top:auto;font-family:'Fredoka',sans-serif;color:var(--pink);text-decoration:none;font-size:17px}
+  .body .more:hover{text-decoration:underline}
+  .bg-pink{background:var(--pink)} .bg-teal{background:var(--teal)} .bg-sky{background:var(--sky)}
+  .bg-cream{background:var(--cream)} .bg-sun{background:#FFE680} .bg-ink{background:var(--ink)}
+
+  .hi{text-align:center;padding:70px 0 90px}
+  .hi h2{font-size:clamp(36px,6vw,60px)}
+  .hi p{font-size:19px;margin:12px auto 28px;max-width:520px}
+  footer{text-align:center;font-size:14px;padding:0 0 30px;position:relative;z-index:1}
+
+  .confetti{position:fixed;font-size:26px;pointer-events:none;z-index:50;animation:pop 1.3s ease-out forwards}
+  @keyframes pop{to{transform:translate(var(--dx),var(--dy)) rotate(var(--spin));opacity:0}}
+
+  @media (prefers-reduced-motion:reduce){
+    #emoji-sky{display:none}
+    *{animation:none!important;transition:none!important}
+    .card{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<div id="emoji-sky" aria-hidden="true"></div>
+
+<main>
+  <section class="hero">
+    <span class="tag">👋 Francis on paper</span>
+    <h1>Hey, I'm Kang Kang<span class="wave">👋</span></h1>
+    <p>Final-year SUSS student, <b>Muay Thai fighter</b> and certified yapper. I like people, pressure and a good argument, so now I'm looking for a <b>sales job</b> where all three count as work.</p>
+    <div class="btns">
+      <a class="btn" href="#me">Get to know me ↓</a>
+      <a class="btn alt" href="#hi">Say hi 👋</a>
+    </div>
+    <div class="socials">
+      <a href="LINKEDIN_URL" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21H9z"/></svg></a>
+      <a href="INSTAGRAM_URL" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="#hi" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div>
+  </section>
+
+  <section id="me">
+    <h2 class="section-title">The highlight reel 🎬</h2>
+    <p class="section-sub">Six things that explain me better than a resume does.</p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="art bg-pink"><span>🥊</span><!-- PHOTO_FIGHT --></div>
+        <div class="body">
+          <h3>In the ring</h3>
+          <p>I've had my own Muay Thai fight. Yes, I volunteered to get punched in the face. Turns out staying calm while someone's actively trying to win is a very transferable skill.</p>
+          <a class="more" href="FIGHT_VIDEO_URL" target="_blank" rel="noopener">Watch the fight →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art bg-sky"><span>✈️</span><!-- PHOTO_TRAVEL --></div>
+        <div class="body">
+          <h3>Out of the country</h3>
+          <p>Spent a semester on exchange at Korea University and explored Japan. Made friends from everywhere and mastered the ancient art of ordering food by pointing.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art bg-teal"><span>💼</span></div>
+        <div class="body">
+          <h3>At work</h3>
+          <ul>
+            <li>Got staff across 15 districts to adopt a new AI tool (People's Association)</li>
+            <li>Procurement at the Health Promotion Board</li>
+            <li>Best intern in my Singtel cohort</li>
+            <li>Turning trial classes into regular students at Ottodot</li>
+            <li>NS war room: Brigade Commander's Coin</li>
+          </ul>
+          <a class="more" href="LINKEDIN_URL" target="_blank" rel="noopener">Full story on LinkedIn →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art bg-cream"><span>📚</span><!-- PHOTO_PROJECTS --></div>
+        <div class="body">
+          <h3>In class</h3>
+          <ul>
+            <li><b>Heritage Meets AI:</b> a 16-week AI Jewellery Concierge campaign for Poh Heng</li>
+            <li><b>AeviceMD:</b> played B2B marketing consultants and planned a medtech company's overseas expansion</li>
+          </ul>
+          <a class="more" href="SLIDES_URL" target="_blank" rel="noopener">See the slides →</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art bg-sun"><span>🎤</span></div>
+        <div class="body">
+          <h3>On stage</h3>
+          <p>National Schools Literature Festival champion as debate captain, and national public speaking rep.</p>
+          <p><b>Past audiences include:</b> debate judges, one Brigade Commander, and a class of P5 kids who did <i>not</i> want to learn angles.</p>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="art bg-ink"><span>👋</span></div>
+        <div class="body">
+          <h3>Say hi</h3>
+          <p>Hiring for sales? Want a yapper on your team? Or just want to argue about the best chicken rice in Singapore? I'm in.</p>
+          <a class="more" href="#hi">Let's talk →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="hi" id="hi">
+    <h2>Let's talk 🤙</h2>
+    <p>Fastest way to reach me. I reply quicker than I throw a jab.</p>
+    <div class="btns" style="justify-content:center">
+      <a class="btn" id="email-btn" href="mailto:EMAIL_ADDRESS">Email me ✉️</a>
+      <a class="btn alt" href="LINKEDIN_URL" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+</main>
+
+<footer>Made with way too many emojis by Kang Kang · 2026</footer>
+
+<script>
+  const sky = document.getElementById('emoji-sky');
+  const emojis = ['😂','😭','🥊','🔥','😎','✈️','💬','🤙','😂','🥊'];
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function spawn(){
+    if (document.hidden || reduce) return;
+    const e = document.createElement('span');
+    e.className = 'floaty';
+    e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    e.style.left = Math.random()*100 + 'vw';
+    e.style.fontSize = (20 + Math.random()*26) + 'px';
+    e.style.setProperty('--spin', (Math.random()*360 - 180) + 'deg');
+    const dur = 9 + Math.random()*8;
+    e.style.animationDuration = dur + 's';
+    sky.appendChild(e);
+    setTimeout(() => e.remove(), dur*1000);
+  }
+  if (!reduce){
+    for (let i=0;i<6;i++) setTimeout(spawn, i*500);
+    setInterval(spawn, 1100);
+  }
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach((en) => {
+      if (en.isIntersecting){
+        const idx = [...en.target.parentNode.children].indexOf(en.target);
+        setTimeout(() => en.target.classList.add('show'), idx*90);
+        io.unobserve(en.target);
+      }
+    });
+  }, {threshold:.15});
+  document.querySelectorAll('.card').forEach(c => io.observe(c));
+
+  function confetti(x, y){
+    if (reduce) return;
+    const bits = ['🎉','✨','😂','🥊','💖','🤙'];
+    for (let i=0;i<18;i++){
+      const c = document.createElement('span');
+      c.className = 'confetti';
+      c.textContent = bits[i % bits.length];
+      c.style.left = x + 'px';
+      c.style.top = y + 'px';
+      const ang = Math.random()*Math.PI*2, dist = 80 + Math.random()*140;
+      c.style.setProperty('--dx', Math.cos(ang)*dist + 'px');
+      c.style.setProperty('--dy', (Math.sin(ang)*dist - 60) + 'px');
+      c.style.setProperty('--spin', (Math.random()*540 - 270) + 'deg');
+      document.body.appendChild(c);
+      setTimeout(() => c.remove(), 1300);
+    }
+  }
+  document.querySelectorAll('.btn').forEach(b => b.addEventListener('click', ev => confetti(ev.clientX, ev.clientY)));
+</script>
+</body>
+</html>
